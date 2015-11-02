@@ -9,6 +9,13 @@ noun
 
 A JavaScript class for creating simple procedurally generated trees.
 
+![Sample Tree](https://raw.githubusercontent.com/walsh9/topiary/master/sample/topiary.png)
+
+## Demos
+
+* [Tree Generator with Options GUI](http://walsh9.github.io/topiary/demos/generator/index.html)
+* [Parallax Forest](http://walsh9.github.io/topiary/demos/parallax_forest/index.html)
+
 ## Usage
 
 ###example.html
