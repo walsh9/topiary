@@ -7,7 +7,7 @@ noun
 
 ## Description
 
-A JavaScript class for creating simple procedurally generated trees.
+A JavaScript module for creating simple procedurally generated trees.
 
 ## Demos
 
