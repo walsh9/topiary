@@ -8,7 +8,7 @@ var RIGHT_ANGLE = 6
 var HEIGHT_CHANGE = 7
 var THICKNESS_CHANGE = 8
 
-var nonRandomTree = function(array) {
+var nonRandomTree = function(canvas, array) {
   var canvas = document.getElementById("canvas");
   var treeOptions = {
     canvas: canvas,
@@ -113,9 +113,17 @@ var change = function(array, waveGenArray, waveGenArray2) {
 var sinGens = arrayOfSinGenerators(9, 0.04, 0.01);
 var noiseGens = arrayOfNoiseGenerators(9, -0.01, 0.01);
 var seed = arrayOfRandomFloats(9);
+var canvas = document.getElementById("canvas");
+    
+var fitCanvasToWindow = function() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+window.addEventListener('resize', fitCanvasToWindow);
 
 var draw = function () {
-  tree = nonRandomTree(change(seed, sinGens, noiseGens));
+  tree = nonRandomTree(canvas, change(seed, sinGens, noiseGens));
   canvas = document.getElementById("canvas");
   ctx = canvas.getContext("2d");
   ctx.fillstyle = "black"
@@ -123,5 +131,6 @@ var draw = function () {
   tree.draw();
 };
 
+fitCanvasToWindow();
 setInterval(draw, 50)
 
