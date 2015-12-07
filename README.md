@@ -5,6 +5,8 @@ noun
 
 1. A shrub or tree clipped or trimmed into fantastic shapes.
 
+![A Tree](docs/screenshot.png)
+
 ## Description
 
 A JavaScript module for creating simple procedurally generated trees.
