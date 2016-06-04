@@ -11,17 +11,13 @@ noun
 
 A JavaScript module for creating simple procedurally generated trees.
 
-## Demos
-
-* [Tree Generator with Options GUI](http://walsh9.github.io/topiary/demos/generator/index.html)
-* [Parallax Forest](http://walsh9.github.io/topiary/demos/parallax_forest/index.html)
-
 ## Usage
+
+`npm install @walsh9/topiary --save`
 
 ###example.html
 
 ```html
-<script src="topiary.js">
 <canvas id="canvas" width="500" height="500">
 <script src="example.js">
 ```
@@ -31,8 +27,8 @@ A JavaScript module for creating simple procedurally generated trees.
 ```javascript
     var treeOptions = {
       canvas: document.getElementById("canvas"),
-      startPoint: new Vector2d(250, 500),
-      color: Color.random(),
+      startPoint: Topiary.Vector2d.new(250, 500),
+      color: Topiary.Color.random(),
       height: 100,
       thickness: 10,
       depth: 14,
@@ -50,10 +46,17 @@ A JavaScript module for creating simple procedurally generated trees.
       minThicknessChange: 0.6,
       maxThicknessChange: 0.9,
     };
-    var tree = new Topiary(treeOptions, mutationOptions);
-    tree.draw()
+    var tree = Topiary.new(treeOptions, mutationOptions);
+    tree.draw();
+```
+## Helpers
+
+```javascript
+    var color1 = Topiary.Color.new(h, s, l);
+    var color2 = Topiary.Color.random();
+    var point = Topiary.Vector2d.new(x, y);
 ```
 
 ## License
 
-© Matt Walsh 2015, released under the MIT License
+© Matt Walsh 2015-2016, released under the MIT License

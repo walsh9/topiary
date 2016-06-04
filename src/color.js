@@ -1,6 +1,7 @@
 // HSL colors
+import {randomBetween} from './math_helpers';
 
-var Color = function(h, s, l) {
+const Color = function(h, s, l) {
     if (typeof h == "string" && s === undefined) {
         this.h = parseInt(style.split("(")[1]);
         this.s = parseInt(style.split(",")[1]);
@@ -21,13 +22,15 @@ Color.prototype.darker = function(n) {
 };
 
 Color.prototype.shiftHue = function(n) {
-        var newH = this.h + n % 359;
-        return new Color(newH, this.s, this.l);   
+    let newH = this.h + n % 359;
+    return new Color(newH, this.s, this.l);
 };
 
 Color.random = function() {
-    h = _Math.randomBetween(0,359);
-    s = _Math.randomBetween(0,100);
-    l = _Math.randomBetween(0,100);
+    let h = randomBetween(0,359);
+    let s = randomBetween(0,100);
+    let l = randomBetween(0,100);
     return new Color(h, s, l);
 };
+
+export default Color;

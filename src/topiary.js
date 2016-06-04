@@ -1,19 +1,22 @@
-var Topiary = function(treeOptions, mutationOptions) {
+import Color from './color';
+import Vector2d from './vector2d';
+import {randomBetween} from './math_helpers';
+
+let TopiaryObject = function(treeOptions, mutationOptions) {
     this.alive = true;
-    var self = this;
-    var mutate = function(treeOptions, isRightBranch) {
-        var mOpts = self.mutationOptions;
-        var tOpts = treeOptions;
+    let mutate = (treeOptions, isRightBranch) => {
+        let mOpts = this.mutationOptions;
+        let tOpts = treeOptions;
         return {
             canvas: tOpts.canvas,
             depth: tOpts.depth - 1,
             angle: isRightBranch ? 
                 tOpts.angle + 
-                    _Math.randomBetween(mOpts.minRightAngle, mOpts.maxRightAngle) : 
+                    randomBetween(mOpts.minRightAngle, mOpts.maxRightAngle) : 
                 tOpts.angle - 
-                    _Math.randomBetween(mOpts.minLeftAngle, mOpts.maxLeftAngle),
-            height: tOpts.height * _Math.randomBetween(mOpts.minHeightChange, mOpts.maxHeightChange),
-            thickness:  tOpts.thickness * _Math.randomBetween(mOpts.minThicknessChange, mOpts.maxThicknessChange), 
+                    randomBetween(mOpts.minLeftAngle, mOpts.maxLeftAngle),
+            height: tOpts.height * randomBetween(mOpts.minHeightChange, mOpts.maxHeightChange),
+            thickness:  tOpts.thickness * randomBetween(mOpts.minThicknessChange, mOpts.maxThicknessChange), 
             delay: tOpts.delay,
             color: tOpts.color,
             rainbow: tOpts.rainbow,
@@ -21,19 +24,19 @@ var Topiary = function(treeOptions, mutationOptions) {
         };
     };
 
-    var drawTree = function(treeOptions) {
-        var opts = treeOptions;
-        if (opts.depth > 0 && self.alive) {
+    let drawTree = (treeOptions) => {
+        let opts = treeOptions;
+        if (opts.depth > 0 && this.alive) {
             if (opts.angle === undefined) {
                 opts.angle = 180;
             }
-            var branch = drawBranch(opts);
-            var leftOptions = mutate(opts, false);
-            var rightOptions = mutate(opts, true);
+            let branch = drawBranch(opts);
+            let leftOptions = mutate(opts, false);
+            let rightOptions = mutate(opts, true);
             leftOptions.startPoint = rightOptions.startPoint = branch.endPoint;
             leftOptions.color = rightOptions.color = branch.endColor;
             if (opts.delay) {
-                var timeout = window.setTimeout(function () {
+                let timeout = window.setTimeout(function () {
                     drawTree(leftOptions);
                     drawTree(rightOptions);
                 }, opts.delay);
@@ -44,14 +47,14 @@ var Topiary = function(treeOptions, mutationOptions) {
         }
     };
 
-    var drawBranch = function(treeOptions) {
-        var opts = treeOptions;
-        var ctx = opts.canvas.getContext("2d");
-        var endPoint = opts.startPoint.to(opts.angle, opts.height);
-        var color, nextColor;
+    let drawBranch = (treeOptions) => {
+        let opts = treeOptions;
+        let ctx = opts.canvas.getContext("2d");
+        let endPoint = opts.startPoint.to(opts.angle, opts.height);
+        let color, nextColor;
         if (opts.rainbow) {
             nextColor = opts.color.shiftHue(opts.colorShiftRate);
-            var gradient = ctx.createLinearGradient(opts.startPoint.x, opts.startPoint.y, endPoint.x, endPoint.y);
+            let gradient = ctx.createLinearGradient(opts.startPoint.x, opts.startPoint.y, endPoint.x, endPoint.y);
             gradient.addColorStop(0, opts.color.toStyle());
             gradient.addColorStop(1, nextColor.toStyle());
             color = gradient;
@@ -68,7 +71,7 @@ var Topiary = function(treeOptions, mutationOptions) {
         return {endPoint: endPoint, endColor: nextColor};
     };
 
-    var mutationDefaults = {
+    let mutationDefaults = {
       minLeftAngle: 10,
       maxLeftAngle: 40,
       minRightAngle: 10,
@@ -82,6 +85,15 @@ var Topiary = function(treeOptions, mutationOptions) {
     this.treeOptions = treeOptions;
     this.mutationOptions = mutationOptions || mutationDefaults;
     this.draw = function() { drawTree(this.treeOptions); };
-    this.kill = function() { self.alive = false; };
-
+    this.kill = function() { this.alive = false; };
+    return this;
 };
+const Topiary = {};
+Topiary.new = (treeOptions, mutationOptions) => new TopiaryObject(treeOptions, mutationOptions);
+Topiary.Color = {};
+Topiary.Vector2d = {};
+Topiary.Color.new = (h, s, l) => new Color(h, s, l);
+Topiary.Color.random = () => Color.random();
+Topiary.Vector2d.new = (x, y) => new Vector2d(x, y);
+
+export default Topiary;

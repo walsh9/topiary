@@ -1,0 +1,34 @@
+{
+  "name": "@walsh9/topiary",
+  "version": "0.1.0",
+  "description": "Javascript fractal tree generator",
+  "main": "dist/bundle.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walsh9/topiary.git"
+  },
+  "keywords": [
+    "fractals"
+  ],
+  "author": "Matt Walsh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/walsh9/topiary/issues"
+  },
+  "homepage": "https://github.com/walsh9/topiary#readme",
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "webpack": "^1.13.1"
+  }
+}
