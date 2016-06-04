@@ -13,9 +13,9 @@ A JavaScript module for creating simple procedurally generated trees.
 
 ## Demos
 
-[Tree Generator with Options GUI](http://walsh9.github.io/topiary-demos/generator/index.html)
-[Parallax Forest](http://walsh9.github.io/topiary-demos/parallax/index.html)
-[Creepy Animated Trees](http://walsh9.github.io/topiary-demos/animation/index.html)
+[Tree Generator with Options GUI](http://walsh9.github.io/topiary-demos/generator/index.html)  
+[Parallax Forest](http://walsh9.github.io/topiary-demos/parallax/index.html)  
+[Creepy Animated Trees](http://walsh9.github.io/topiary-demos/animation/index.html)  
 
 ## Usage
 
