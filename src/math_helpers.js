@@ -1,2 +1,5 @@
-const randomBetween = (min, max) => Math.random() * (max - min) + min;
-export {randomBetween};
+module.exports = randomBetween;
+
+function randomBetween (min, max) {
+  return Math.random() * (max - min) + min;
+}
