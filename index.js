@@ -1,4 +1,4 @@
-const randomBetween = require('./math_helpers');
+const { randomBetween } = require('./lib/math_helpers');
 
 class Topiary {
   constructor (treeOptions, mutationOptions) {
